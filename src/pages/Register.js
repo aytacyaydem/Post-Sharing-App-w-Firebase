@@ -1,29 +1,98 @@
-import React from 'react'
-import { View, Text,Button,TextInput,TouchableOpacity } from 'react-native'
-import {login_page_styles} from "../styles/page_styles"
+import React, {useState} from 'react';
+import {View, Text, Button, TextInput, TouchableOpacity} from 'react-native';
+import {login_page_styles} from '../styles/page_styles';
+import auth from '@react-native-firebase/auth';
 
 //Components
-import {CustomButton} from "../components/Button"
+import {CustomButton} from '../components/Button';
+
 
 const Register = ({navigation}) => {
-    return (
-        <View style={login_page_styles.container}>
-            <Text style={login_page_styles.headerText}>Register Screen</Text>
-            <View style={login_page_styles.formContainer}>
-            <View style={login_page_styles.inputContainer}>
-            <TextInput autoCapitalize="none" autoCorrect={false} placeholder="Email Address" placeholderTextColor="black"/>
-            </View>
-            <View style={login_page_styles.inputContainer}>
-            <TextInput autoCapitalize="none" autoCorrect={false} placeholder="Password" placeholderTextColor="black" secureTextEntry/>
-            </View>
-            <View style={login_page_styles.inputContainer}>
-            <TextInput autoCapitalize="none" autoCorrect={false} placeholder="Confirm Password" placeholderTextColor="black" secureTextEntry/>
-            </View>
-            <CustomButton title="Kayıt Ol" style={{marginHorizontal:10}}/>
-            <CustomButton title="Vazgeç" style={{marginHorizontal:10}} color="orange" onClick={() => navigation.navigate("Login")}/>
-            </View>
-        </View>
-    )
-}
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [Confirmpassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState({});
 
-export {Register}
+  function FireBaseRegister() {
+      if (password===Confirmpassword) {
+        setError({})
+        auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((response) => console.log(response))
+        .catch(({code}) => {
+            switch (code) {
+                case 'auth/invalid-email' :
+                    setError({email:'Geçersiz bir e-mail girdiniz.'})
+                    break;
+                    
+                case 'auth/email-already-in-use' :
+                    setError({email:'Bu email başka bir kullanıcı tarafından kullanılıyor.'})
+                    break;
+                    
+                case 'auth/weak-password':
+                    setError({password:'Daha güçlü bir şifre giriniz'})
+                    break;
+            
+                default:
+                    setError({unexpected:'Beklenmeyen bir hata oluştu'})
+                    break;
+                    
+            }
+        });     
+      }
+      else{
+        setError({password: '*Şifreler Uyuşmuyor.'})
+
+      }
+    
+  }
+  return (
+    <View style={login_page_styles.container}>
+      <Text style={login_page_styles.headerText}>Register Screen</Text>
+      <View style={login_page_styles.formContainer}>
+        {error ?  <Text> {Object.values(error)}  </Text> :  null} 
+        <View style={login_page_styles.inputContainer}>
+          <TextInput
+            style={{borderWidth: error.email ? 1 : 0 , borderColor: 'tomato'}}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Email Address"
+            placeholderTextColor="black"
+            onChangeText={(val) => setEmail(val)}
+          />
+        </View>
+        <View style={login_page_styles.inputContainer}>
+          <TextInput
+            style={{borderWidth: error.password ? 1 : 0 , borderColor: 'tomato'}}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Password"
+            placeholderTextColor="black"
+            secureTextEntry
+            onChangeText={(val) => setPassword(val)}
+          />
+        </View>
+        <View style={login_page_styles.inputContainer}>
+          <TextInput
+            style={{borderWidth: error.password ? 1 : 0 , borderColor: 'tomato'}}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Confirm Password"
+            placeholderTextColor="black"
+            secureTextEntry
+            onChangeText={(val) => setConfirmPassword(val)}
+          />
+        </View>
+        <CustomButton title="Kayıt Ol" style={{marginHorizontal: 10}} onClick={FireBaseRegister} />
+        <CustomButton
+          title="Vazgeç"
+          style={{marginHorizontal: 10}}
+          color="orange"
+          onClick={() => navigation.navigate('Login')}
+        />
+      </View>
+    </View>
+  );
+};
+
+export {Register};
