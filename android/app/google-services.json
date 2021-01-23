@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "410671828806",
+    "project_id": "kodluyoruz68group10",
+    "storage_bucket": "kodluyoruz68group10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:410671828806:android:f2e13675e233fa491ddf47",
+        "android_client_info": {
+          "package_name": "com.week_5"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "410671828806-ihfunqr2at7dcg1hta29sr1gjqn5bdqi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-narUwHPpXFgCyHIzgVAtE_t4Aat5qJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "410671828806-ihfunqr2at7dcg1hta29sr1gjqn5bdqi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

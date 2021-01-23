@@ -1,9 +1,10 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {Text} from 'react-native';
 
 function App() {
-  // ...
-  return null;
+  return(
+    <Text>Deneme</Text>
+  );
 }
 
 export default App;
