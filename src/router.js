@@ -21,7 +21,7 @@ function AfterLogin() {
 }
 function Home() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Home" component={AfterLogin} />
     </Stack.Navigator>
   );
@@ -34,7 +34,6 @@ function AuthStack() {
     </Stack.Navigator>
   );
 }
-// hasSession ? console.log('1') : console.log('0')
 
 function Router() {
   const [initializing, setInitializing] = useState(true);
@@ -50,10 +49,7 @@ function Router() {
     return subscriber; // unsubscribe on unmount
   }, []);
   return (
-    <NavigationContainer>
-      {/* {console.log(hasSession ? 1 : 0)} */}
-      {user ? <Home /> : <AuthStack />}
-    </NavigationContainer>
+    <NavigationContainer>{user ? <Home /> : <AuthStack />}</NavigationContainer>
   );
 }
 
