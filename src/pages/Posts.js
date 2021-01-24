@@ -1,26 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, FlatList, Button, SafeAreaView} from 'react-native';
+import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-import {PostsItem, PostsInput } from '../components';
-
-const temp_data = [
-  {id: 0, text: 'Deneme'},
-  {id: 1, text: 'Deneme'},
-  {id: 2, text: 'Deneme'},
-];
+import {PostsItem, PostsInput} from '../components';
 
 // auth().signOut();
-function addPost(post) {
-    return;
-}
 
 const Posts = () => {
-  const renderPosts = ({item}) => <PostsItem item={item} />
+  const [postArray, setPostArray] = useState([]);
+
+  useEffect(() => {
+    database()
+      .ref(`${auth().currentUser.uid}`)
+      .on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (!data) {
+          return;
+        }
+        setPostArray(Object.values(data));
+      });
+  }, []);
+
+  const renderPosts = ({item}) => <PostsItem item={item} />;
+
+  function addPost(post) {
+    database()
+    .ref(`${auth().currentUser.uid}`)
+    .push({text: post});
+  }
   return (
     <SafeAreaView style={{flex: 1}}>
       <FlatList
-        keyExtractor={(item) => item.id.toString()}
-        data={temp_data}
+        keyExtractor={(item, index) => index.toString()}
+        data={postArray}
         renderItem={renderPosts}
       />
       <PostsInput onAdd={addPost} />
