@@ -11,14 +11,17 @@ const Posts = () => {
   const [postArray, setPostArray] = useState([]);
 
   useEffect(() => {
+    
     database()
-      .ref(`${auth().currentUser.uid}`)
+      .ref()
       .on('value', (snapshot) => {
         const data = snapshot.val();
         if (!data) {
           return;
         }
+        console.log(data)
         setPostArray(Object.values(data));
+
       });
   }, []);
 
@@ -26,10 +29,11 @@ const Posts = () => {
 
   function addPost(post) {
     database()
-    .ref(`${auth().currentUser.uid}`)
+    .ref(`/posts/${auth().currentUser.uid}`)
     .push({text: post, userName:auth().currentUser.email.split("@")[0],createDate:new Date().toISOString()});
   }
   return (
+    
     <SafeAreaView style={{flex: 1}}>
       <FlatList
         keyExtractor={(item, index) => index.toString()}
