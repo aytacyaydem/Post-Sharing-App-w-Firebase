@@ -21,7 +21,7 @@ const Login = ({navigation}) => {
     } else {
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Home'))
+        .then((response) => console.log(response))
         .catch(({code, message}) => Alert.alert(code, message));
     }
   }

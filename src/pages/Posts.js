@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, FlatList, Button, SafeAreaView} from 'react-native';
+import {View, Text, FlatList, SafeAreaView,TouchableOpacity, Touchable} from 'react-native';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 import {PostsItem, PostsInput} from '../components';
+
 
 // auth().signOut();
 
@@ -26,7 +27,7 @@ const Posts = () => {
   function addPost(post) {
     database()
     .ref(`${auth().currentUser.uid}`)
-    .push({text: post});
+    .push({text: post, userName:auth().currentUser.email.split("@")[0],createDate:new Date().toISOString()});
   }
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -36,6 +37,7 @@ const Posts = () => {
         renderItem={renderPosts}
       />
       <PostsInput onAdd={addPost} />
+      <TouchableOpacity onPress={() => auth().signOut()} style={{alignSelf:"center"}}><Text style={{fontSize:17}}>Çıkış Yap</Text></TouchableOpacity>
     </SafeAreaView>
   );
 };
