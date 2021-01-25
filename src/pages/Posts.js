@@ -13,14 +13,14 @@ const Posts = () => {
   useEffect(() => {
     
     database()
-      .ref()
+      .ref('posts')
       .on('value', (snapshot) => {
         const data = snapshot.val();
         if (!data) {
           return;
         }
-        console.log(data)
         setPostArray(Object.values(data));
+        console.log(data);
 
       });
   }, []);
@@ -29,7 +29,7 @@ const Posts = () => {
 
   function addPost(post) {
     database()
-    .ref(`/posts/${auth().currentUser.uid}`)
+    .ref('posts')
     .push({text: post, userName:auth().currentUser.email.split("@")[0],createDate:new Date().toISOString()});
   }
   return (
