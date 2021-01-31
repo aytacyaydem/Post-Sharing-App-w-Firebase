@@ -1,12 +1,38 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import {useEffect, useState} from 'react';
+import {View, Text, FlatList} from 'react-native';
+import {PostsItem} from '../components';
+import database from '@react-native-firebase/database';
+import auth from '@react-native-firebase/auth';
 
 const Saved = () => {
-    return (
-        <View>
-            <Text>Saved Posts</Text>
-        </View>
-    )
-}
+  const [favArray, setFavArray] = useState([]);
+  const renderFav = ({item}) => <PostsItem item={item} fav />;
+  const readData = () => {
+    database()
+      .ref('/fav/' + auth().currentUser.uid)
+      .on('value', (snapshot) => {
+        const data = snapshot.val();
+        if (!data) {
+          return;
+        }
+        setFavArray(Object.values(data));
+      });
+  };
 
-export {Saved}
+  useEffect(() => {
+    readData();
+  }, []);
+
+  return (
+    <View>
+      <FlatList
+        keyExtractor={(item, index) => index.toString()}
+        data={favArray}
+        renderItem={renderFav}
+      />
+    </View>
+  );
+};
+
+export {Saved};
