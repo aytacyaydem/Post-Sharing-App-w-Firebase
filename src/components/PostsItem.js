@@ -1,11 +1,12 @@
 import moment from 'moment';
 import 'moment/locale/tr';
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
+import {View, TouchableOpacity, Text, Alert} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {posts_item_style} from '../styles/component_styles';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
+import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
 
 moment.locale('tr');
 
@@ -22,6 +23,13 @@ function PostsItem({item, fav}) {
       .ref('/fav/' + auth().currentUser.uid)
       .push(item);
   }
+  function removeFromFav() {
+    database()
+    .ref(`/fav/${auth().currentUser.uid}/${item.text}`)
+    .remove()
+    Alert.alert('Mesaj', 'Kayıt silindi.')
+    console.log(item.text)
+  }
 
   return (
     <View style={posts_item_style.container}>
@@ -31,11 +39,16 @@ function PostsItem({item, fav}) {
       </View>
       <View style={posts_item_style.postContainer}>
         <Text>{item.text}</Text>
-        {!fav && 
+        {!fav ? (
           <TouchableOpacity onPress={addToFav}>
             <Icon name="bookmark" color="black" size={20} />
           </TouchableOpacity>
-        }
+        ) : (
+          <TouchableOpacity
+            onPress={removeFromFav}>
+            <Icon name="trash-can" color="black" size={20} />
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

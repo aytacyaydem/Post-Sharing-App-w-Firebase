@@ -9,8 +9,6 @@ import auth from '@react-native-firebase/auth';
 const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
-// auth().signOut();
-
 function AfterLogin() {
   return (
     <BottomTab.Navigator>
