@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import {login_page_styles} from '../styles/page_styles';
 import auth from '@react-native-firebase/auth';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-//Components
 import {CustomButton} from '../components/Button';
 
 const Register = ({navigation}) => {
@@ -55,6 +55,12 @@ const Register = ({navigation}) => {
   return (
     <View style={login_page_styles.container}>
       <View style={login_page_styles.formContainer}>
+        <Icon
+          style={login_page_styles.icon}
+          name="artstation"
+          size={150}
+          color="#5472d3"
+        />
         {error ? <Text> {Object.values(error)} </Text> : null}
         <View style={login_page_styles.inputContainer}>
           <TextInput
@@ -62,7 +68,7 @@ const Register = ({navigation}) => {
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Email Address"
-            placeholderTextColor="black"
+            placeholderTextColor="gray"
             onChangeText={(val) => setEmail(val)}
           />
         </View>
@@ -72,7 +78,7 @@ const Register = ({navigation}) => {
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Password"
-            placeholderTextColor="black"
+            placeholderTextColor="gray"
             secureTextEntry
             onChangeText={(val) => setPassword(val)}
           />
@@ -83,7 +89,7 @@ const Register = ({navigation}) => {
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Confirm Password"
-            placeholderTextColor="black"
+            placeholderTextColor="gray"
             secureTextEntry
             onChangeText={(val) => setConfirmPassword(val)}
           />

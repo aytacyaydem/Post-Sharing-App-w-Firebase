@@ -12,7 +12,15 @@ const BottomTab = createBottomTabNavigator();
 
 function AfterLogin() {
   return (
-    <BottomTab.Navigator>
+    <BottomTab.Navigator
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color}) => generateIcon(focused, color, route),
+        tabBarLabel: () => null,
+      })}
+      tabBarOptions={{
+        activeTintColor: '#ff6347',
+        inactiveTintColor: 'gray',
+      }}>
       <BottomTab.Screen name="Posts" component={Posts} />
       <BottomTab.Screen name="Saved" component={Saved} />
     </BottomTab.Navigator>
@@ -53,3 +61,21 @@ function Router() {
 }
 
 export default Router;
+
+function generateIcon(focused, color, route) {
+  let iconName;
+
+  switch (route.name) {
+    case 'Posts':
+      iconName = focused ? 'timeline-text' : 'timeline-text-outline';
+      break;
+    case 'Saved':
+      iconName = focused ? 'content-save-all' : 'content-save-all-outline';
+      break;
+
+    default:
+      break;
+  }
+
+  return <Icon name={iconName} color={color} size={30} />;
+}

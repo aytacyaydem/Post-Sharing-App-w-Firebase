@@ -8,7 +8,7 @@ function CustomButton({title, color, onClick, ...restProps}) {
       <TouchableOpacity
         style={[
           custom_button_styles.buttonContainer,
-          {backgroundColor: color ? color : 'tomato'},
+          {backgroundColor: color ? color : '#5472d3'},
         ]}
         onPress={onClick}>
         <Text style={custom_button_styles.buttonText}>{title}</Text>

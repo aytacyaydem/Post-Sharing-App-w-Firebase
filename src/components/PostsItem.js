@@ -28,7 +28,7 @@ function PostsItem({item, fav}) {
     <View style={posts_item_style.container}>
       <View style={posts_item_style.header}>
         <Text style={posts_item_style.usernameText}>{item.userName}</Text>
-        <Text>{parsed.fromNow()}</Text>
+        <Text style={posts_item_style.time}>{parsed.fromNow()}</Text>
       </View>
       <View style={posts_item_style.postContainer}>
         <Text>{item.text}</Text>

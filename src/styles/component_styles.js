@@ -12,6 +12,7 @@ const custom_button_styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 15,
+    color: '#ffffff',
   },
 });
 const posts_input_style = StyleSheet.create({
@@ -20,56 +21,71 @@ const posts_input_style = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 5,
+    elevation: 10,
+    borderWidth: 0.3,
   },
   input: {
     backgroundColor: 'white',
     padding: 5,
     margin: 5,
-  }
+    borderWidth: 0.2,
+    borderRadius: 5,
+    elevation: 10,
+  },
 });
 const posts_item_style = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    margin:10,
-    borderRadius:10
+    margin: 10,
+    borderRadius: 10,
+    borderWidth: 0.3,
+    elevation: 10,
   },
-  header : {
-    paddingHorizontal:10,
-    paddingVertical:3,
-    borderTopLeftRadius:10,
-    borderTopRightRadius:10,
-    flexDirection:"row",
-    backgroundColor:"tomato",
-    justifyContent:"space-between",
-    alignItems:"center"
+  header: {
+    paddingHorizontal: 10,
+    paddingVertical: 3,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    flexDirection: 'row',
+    backgroundColor: '#5472d3',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  postContainer : {
-    padding:10,
-    flexDirection:"row",
-    justifyContent:"space-between"
+  postContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  usernameText : {
-    fontSize:16,
-    fontWeight:"bold",
-    color:"black",
-    fontStyle:"italic"
-  }
-
-})
+  usernameText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    fontStyle: 'italic',
+  },
+  time: {
+    color: '#ffffff',
+  },
+});
 const posts_header_style = StyleSheet.create({
-  container:{
-    backgroundColor: 'tomato',
+  container: {
+    backgroundColor: '#0d47a1',
     padding: 5,
     marginBottom: 15,
     borderWidth: 0.2,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   text: {
     fontSize: 20,
-    fontWeight: 'bold'
-  }
-})
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+});
 
-export {custom_button_styles, posts_input_style,posts_item_style,posts_header_style};
+export {
+  custom_button_styles,
+  posts_input_style,
+  posts_item_style,
+  posts_header_style,
+};

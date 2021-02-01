@@ -2,20 +2,18 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, Alert} from 'react-native';
 import {login_page_styles} from '../styles/page_styles';
 import auth from '@react-native-firebase/auth';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {CustomButton} from '../components/Button';
 
 const Login = ({navigation}) => {
-  // auth().signOut();
-
   const [email, setEmail] = useState('');
   const [password, setPssword] = useState('');
-  // const [error, setError] = useState({});
   function signIn() {
     if (email === '') {
-      Alert.alert('Email alanı boş bırakılamaz');
+      Alert.alert('Uyarı', 'Email alanı boş bırakılamaz');
     } else if (password === '') {
-      Alert.alert('Password alanı boş bırakılamaz');
+      Alert.alert('Uyarı', 'Password alanı boş bırakılamaz');
     } else if (email && password === '') {
       Alert.alert('Email ve password alanı boş bırakılamaz');
     } else {
@@ -28,12 +26,18 @@ const Login = ({navigation}) => {
   return (
     <View style={login_page_styles.container}>
       <View style={login_page_styles.formContainer}>
+        <Icon
+          style={login_page_styles.icon}
+          name="artstation"
+          size={150}
+          color="#5472d3"
+        />
         <View style={login_page_styles.inputContainer}>
           <TextInput
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Email Address"
-            placeholderTextColor="black"
+            placeholderTextColor="gray"
             onChangeText={(val) => setEmail(val)}
           />
         </View>
@@ -42,7 +46,7 @@ const Login = ({navigation}) => {
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Password"
-            placeholderTextColor="black"
+            placeholderTextColor="gray"
             secureTextEntry
             onChangeText={(val) => setPssword(val)}
           />

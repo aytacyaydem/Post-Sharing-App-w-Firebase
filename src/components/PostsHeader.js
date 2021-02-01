@@ -8,7 +8,7 @@ function PostsHeader() {
     <View style={posts_header_style.container}>
       <Text style={posts_header_style.text}>Timeline</Text>
       <TouchableOpacity onPress={() => auth().signOut()}>
-        <Icon name="exit-to-app" color="black" size={25} />
+        <Icon name="exit-to-app" color="#ffffff" size={25} />
       </TouchableOpacity>
     </View>
   );
