@@ -27,7 +27,7 @@ const Saved = () => {
   return (
     <View>
       <FlatList
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(_, index) => index.toString()}
         data={favArray}
         renderItem={renderFav}
       />

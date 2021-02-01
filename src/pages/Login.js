@@ -28,7 +28,6 @@ const Login = ({navigation}) => {
   return (
     <View style={login_page_styles.container}>
       <View style={login_page_styles.formContainer}>
-        {/* {error ? <Text> {Object.values(error)} </Text> : null} */}
         <View style={login_page_styles.inputContainer}>
           <TextInput
             autoCapitalize="none"

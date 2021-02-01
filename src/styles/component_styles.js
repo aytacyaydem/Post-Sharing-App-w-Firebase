@@ -56,5 +56,20 @@ const posts_item_style = StyleSheet.create({
   }
 
 })
+const posts_header_style = StyleSheet.create({
+  container:{
+    backgroundColor: 'tomato',
+    padding: 5,
+    marginBottom: 15,
+    borderWidth: 0.2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
+})
 
-export {custom_button_styles, posts_input_style,posts_item_style};
+export {custom_button_styles, posts_input_style,posts_item_style,posts_header_style};

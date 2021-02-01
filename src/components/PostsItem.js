@@ -6,13 +6,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {posts_item_style} from '../styles/component_styles';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
-import { ReloadInstructions } from 'react-native/Libraries/NewAppScreen';
 
 moment.locale('tr');
-
-/* 
- {"createDate": "2021-01-25T19:24:24.742Z", "text": "selam23", "userName": "asy"}
-*/
 
 function PostsItem({item, fav}) {
   const createDate = new Date(item.createDate);
@@ -24,11 +19,9 @@ function PostsItem({item, fav}) {
       .push(item);
   }
   function removeFromFav() {
-    database()
-    .ref(`/fav/${auth().currentUser.uid}/${item.text}`)
-    .remove()
-    Alert.alert('Mesaj', 'Kayıt silindi.')
-    console.log(item.text)
+    database().ref(`/fav/${auth().currentUser.uid}/${item.text}`).remove();
+    Alert.alert('Mesaj', 'Kayıt silindi.');
+    console.log(item.text);
   }
 
   return (
@@ -44,8 +37,7 @@ function PostsItem({item, fav}) {
             <Icon name="bookmark" color="black" size={20} />
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity
-            onPress={removeFromFav}>
+          <TouchableOpacity onPress={removeFromFav}>
             <Icon name="trash-can" color="black" size={20} />
           </TouchableOpacity>
         )}
