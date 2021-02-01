@@ -18,7 +18,7 @@ function AfterLogin() {
         tabBarLabel: () => null,
       })}
       tabBarOptions={{
-        activeTintColor: '#ff6347',
+        activeTintColor: 'black',
         inactiveTintColor: 'gray',
       }}>
       <BottomTab.Screen name="Posts" component={Posts} />
