@@ -14,12 +14,15 @@ function PostsItem({item, fav}) {
   const parsed = moment(createDate);
 
   function addToFav() {
-    database()
-      .ref('/fav/' + auth().currentUser.uid)
-      .push(item);
+    const userId = auth().currentUser.uid
+    const newRef = database().ref("/fav").child(userId).push()
+    if(!item.favId){
+      item.favId = newRef.key
+      newRef.set(item)
+    }
   }
   function removeFromFav() {
-    database().ref(`/fav/${auth().currentUser.uid}/${item.text}`).remove();
+    database().ref(`/fav/${auth().currentUser.uid}/${item.favId}`).remove();
     Alert.alert('Mesaj', 'Kayıt silindi.');
     console.log(item.text);
   }

@@ -27,13 +27,16 @@ const Posts = () => {
   const renderPosts = ({item}) => <PostsItem item={item} />;
 
   function addPost(post) {
-    database()
+    const newReference = database()
       .ref('posts')
-      .push({
-        text: post,
-        userName: auth().currentUser.email.split('@')[0],
-        createDate: new Date().toISOString(),
-      });
+    console.log("key: ",newReference)
+    newReference.push({
+      id:newReference.key,
+      text: post,
+      userName: auth().currentUser.email.split('@')[0],
+      createDate: new Date().toISOString(),
+    }).then((e) => console.log(e))
+
     readData();
   }
   return (

@@ -7,18 +7,18 @@ import auth from '@react-native-firebase/auth';
 
 const Saved = () => {
   const [favArray, setFavArray] = useState([]);
-  const renderFav = ({item}) => <PostsItem item={item} fav />;
   const readData = () => {
     database()
-      .ref('/fav/' + auth().currentUser.uid)
-      .on('value', (snapshot) => {
-        const data = snapshot.val();
-        if (!data) {
-          return;
-        }
-        setFavArray(Object.values(data));
-      });
+    .ref('/fav/' + auth().currentUser.uid)
+    .on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (!data) {
+        return;
+      }   
+      setFavArray(Object.values(data));
+    });
   };
+  const renderFav = ({item}) => <PostsItem item={item} fav />;
 
   useEffect(() => {
     readData();
@@ -26,6 +26,7 @@ const Saved = () => {
 
   return (
     <View>
+      {console.log(favArray)}
       <FlatList
         keyExtractor={(_, index) => index.toString()}
         data={favArray}
