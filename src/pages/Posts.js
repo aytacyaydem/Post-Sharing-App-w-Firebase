@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Text, FlatList, SafeAreaView, TouchableOpacity} from 'react-native';
+import {Text, FlatList, SafeAreaView,View} from 'react-native';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 import {PostsItem, PostsInput, PostsHeader} from '../components';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 const Posts = () => {
   const [postArray, setPostArray] = useState([]);
@@ -25,6 +26,14 @@ const Posts = () => {
   }, []);
 
   const renderPosts = ({item}) => <PostsItem item={item} />;
+  const emptyComponent = () => {
+    return (
+      <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
+        <Text style={{fontSize:24,color:"gray"}}>Liste Boş</Text>
+        <Icon name="information-outline" size={50} color="gray" />
+      </View>
+    )
+  }
 
   function addPost(post) {
     const newReference = database()
@@ -46,6 +55,8 @@ const Posts = () => {
         keyExtractor={(_, index) => index.toString()}
         data={postArray}
         renderItem={renderPosts}
+        contentContainerStyle={{flexGrow:1}}
+        ListEmptyComponent={emptyComponent}
       />
       <PostsInput onAdd={addPost} />
     </SafeAreaView>
