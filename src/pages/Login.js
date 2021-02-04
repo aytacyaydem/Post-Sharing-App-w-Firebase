@@ -19,7 +19,7 @@ const Login = ({navigation}) => {
     } else {
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => navigation.navigate('Home'))
+        .then()
         .catch(({code, message}) => Alert.alert(code, message));
     }
   }

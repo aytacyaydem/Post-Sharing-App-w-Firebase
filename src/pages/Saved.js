@@ -35,7 +35,6 @@ const Saved = () => {
 
   return (
     <View style={{flex:1}}>
-      {console.log(favArray)}
       <FlatList
         keyExtractor={(_, index) => index.toString()}
         contentContainerStyle={{flexGrow:1}}
