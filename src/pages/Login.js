@@ -15,11 +15,11 @@ const Login = ({navigation}) => {
     } else if (password === '') {
       Alert.alert('Uyarı', 'Password alanı boş bırakılamaz');
     } else if (email && password === '') {
-      Alert.alert('Email ve password alanı boş bırakılamaz');
+      Alert.alert('Uyarı', 'Email ve password alanı boş bırakılamaz');
     } else {
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then((response) => console.log(response))
+        .then(() => navigation.navigate('Home'))
         .catch(({code, message}) => Alert.alert(code, message));
     }
   }

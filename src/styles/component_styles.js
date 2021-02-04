@@ -18,11 +18,13 @@ const custom_button_styles = StyleSheet.create({
 const posts_input_style = StyleSheet.create({
   container: {
     backgroundColor: '#e0e0e0',
-    padding: 10,
+    padding: 5,
     margin: 10,
     borderRadius: 5,
     elevation: 10,
-    borderWidth: 0.3,
+    borderWidth: 0.4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   input: {
     backgroundColor: 'white',
@@ -31,7 +33,11 @@ const posts_input_style = StyleSheet.create({
     borderWidth: 0.2,
     borderRadius: 5,
     elevation: 10,
+    width: deviceSize.width * 0.82,
   },
+  sendIcon:{
+    justifyContent: 'center',
+  }
 });
 const posts_item_style = StyleSheet.create({
   container: {
