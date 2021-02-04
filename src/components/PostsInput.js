@@ -1,6 +1,6 @@
 import {TextInput} from 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import {View, Button, Alert, TouchableOpacity} from 'react-native';
+import {View, Button, Alert, TouchableOpacity, clear} from 'react-native';
 import {posts_input_style} from '../styles/component_styles';
 import {CustomButton} from '../components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,12 +12,13 @@ function PostsInput({onAdd}) {
         placeholder="Bir şeyler paylaş"
         style={posts_input_style.input}
         onChangeText={(val) => setText(val)}
+        multiline
       />
       <TouchableOpacity
         style={posts_input_style.sendIcon}
         onPress={() => {
           if (!text) {
-            Alert.alert('Uyarı', 'Lütfen bir değer giriniz');
+            Alert.alert('Uyarı', 'Lütfen bir şeyler yazınız.');
           } else {
             onAdd(text);
           }

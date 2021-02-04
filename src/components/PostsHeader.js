@@ -6,9 +6,9 @@ import auth from '@react-native-firebase/auth';
 function PostsHeader() {
   return (
     <View style={posts_header_style.container}>
-      <Text style={posts_header_style.text}>Timeline</Text>
+      <Icon name="artstation" size={30} color={"white"}/>
       <TouchableOpacity onPress={() => auth().signOut()}>
-        <Icon name="exit-to-app" color="#ffffff" size={25} />
+        <Icon name="exit-to-app" color="#ffffff" size={28} />
       </TouchableOpacity>
     </View>
   );

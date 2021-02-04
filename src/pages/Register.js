@@ -25,26 +25,26 @@ const Register = ({navigation}) => {
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          Alert.alert('Bilgi', 'Hesabınız Oluşturuldu.');
+          Alert.alert('Hesabınız oluşturuldu.', 'Ana sayfaya yönlendiriliyorsunuz.');
         })
         .catch(({code}) => {
           switch (code) {
             case 'auth/invalid-email':
-              setError({email: 'Geçersiz bir e-mail girdiniz.'});
+              setError({email: '*Geçersiz bir e-mail girdiniz.'});
               break;
 
             case 'auth/email-already-in-use':
               setError({
-                email: 'Bu email başka bir kullanıcı tarafından kullanılıyor.',
+                email: '*Bu email başka bir kullanıcı tarafından kullanılıyor.',
               });
               break;
 
             case 'auth/weak-password':
-              setError({password: 'Daha güçlü bir şifre giriniz'});
+              setError({password: '*Daha güçlü bir şifre giriniz'});
               break;
 
             default:
-              setError({unexpected: 'Beklenmeyen bir hata oluştu'});
+              setError({unexpected: '*Beklenmeyen bir hata oluştu'});
               break;
           }
         });

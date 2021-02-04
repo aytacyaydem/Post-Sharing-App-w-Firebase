@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Text, FlatList, SafeAreaView,View} from 'react-native';
+import {Text, FlatList, SafeAreaView, View} from 'react-native';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 import {PostsItem, PostsInput, PostsHeader} from '../components';
-import Icon from "react-native-vector-icons/MaterialCommunityIcons"
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Posts = () => {
   const [postArray, setPostArray] = useState([]);
@@ -28,24 +28,22 @@ const Posts = () => {
   const renderPosts = ({item}) => <PostsItem item={item} />;
   const emptyComponent = () => {
     return (
-      <View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-        <Text style={{fontSize:24,color:"gray"}}>Liste Boş</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontSize: 24, color: 'gray'}}>Liste Boş</Text>
         <Icon name="information-outline" size={50} color="gray" />
       </View>
-    )
-  }
+    );
+  };
 
   function addPost(post) {
-    const newReference = database()
-      .ref('posts')
-    console.log("key: ",newReference)
-    newReference.push({
-      id:newReference.key,
-      text: post,
-      userName: auth().currentUser.email.split('@')[0],
-      createDate: new Date().toISOString(),
-    }).then((e) => console.log(e))
-
+    const newReference = database().ref('posts');
+    newReference
+      .push({
+        id: newReference.key,
+        text: post,
+        userName: auth().currentUser.email.split('@')[0],
+        createDate: new Date().toISOString(),
+      })
     readData();
   }
   return (
@@ -55,7 +53,7 @@ const Posts = () => {
         keyExtractor={(_, index) => index.toString()}
         data={postArray}
         renderItem={renderPosts}
-        contentContainerStyle={{flexGrow:1}}
+        contentContainerStyle={{flexGrow: 1}}
         ListEmptyComponent={emptyComponent}
       />
       <PostsInput onAdd={addPost} />

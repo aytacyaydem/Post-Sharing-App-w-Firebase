@@ -34,10 +34,10 @@ function PostsItem({item, fav}) {
         <Text style={posts_item_style.time}>{parsed.fromNow()}</Text>
       </View>
       <View style={posts_item_style.postContainer}>
-        <Text>{item.text}</Text>
+        <Text style={posts_item_style.text}>{item.text}</Text>
         {!fav ? (
           <TouchableOpacity onPress={addToFav}>
-            <Icon name="bookmark" color="black" size={20} />
+            <Icon name="bookmark" color="black" size={20}/>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity onPress={removeFromFav}>

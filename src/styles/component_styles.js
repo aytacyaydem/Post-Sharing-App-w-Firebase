@@ -17,12 +17,11 @@ const custom_button_styles = StyleSheet.create({
 });
 const posts_input_style = StyleSheet.create({
   container: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#b6b8c3',
     padding: 5,
     margin: 10,
-    borderRadius: 5,
-    elevation: 10,
-    borderWidth: 0.4,
+    borderRadius: 20,
+    elevation: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -30,37 +29,40 @@ const posts_input_style = StyleSheet.create({
     backgroundColor: 'white',
     padding: 5,
     margin: 5,
-    borderWidth: 0.2,
-    borderRadius: 5,
-    elevation: 10,
+    borderRadius: 10,
     width: deviceSize.width * 0.82,
   },
-  sendIcon:{
+  sendIcon: {
     justifyContent: 'center',
-  }
+  },
 });
 const posts_item_style = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     margin: 10,
     borderRadius: 10,
-    borderWidth: 0.3,
     elevation: 10,
+    flex: 1,
+    
   },
   header: {
     paddingHorizontal: 10,
     paddingVertical: 3,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     flexDirection: 'row',
     backgroundColor: '#5472d3',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   postContainer: {
+    flex: 1,
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   usernameText: {
     fontSize: 16,
@@ -71,21 +73,42 @@ const posts_item_style = StyleSheet.create({
   time: {
     color: '#ffffff',
   },
+  text: {
+    flex: 1,
+  },
 });
 const posts_header_style = StyleSheet.create({
   container: {
     backgroundColor: '#0d47a1',
     padding: 5,
     marginBottom: 15,
-    borderWidth: 0.2,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+});
+const saved_header_style = StyleSheet.create({
+  container: {
+    backgroundColor: '#0d47a1',
+    padding: 5,
+    marginBottom: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   text: {
     fontSize: 20,
-    fontWeight: 'bold',
     color: '#ffffff',
+  },
+});
+const animation_style = StyleSheet.create({
+  loading: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  lottieView: {
+    flex: 1,
   },
 });
 
@@ -94,4 +117,6 @@ export {
   posts_input_style,
   posts_item_style,
   posts_header_style,
+  animation_style,
+  saved_header_style
 };

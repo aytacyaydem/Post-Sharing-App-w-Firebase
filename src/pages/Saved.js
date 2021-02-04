@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
 import {View, Text, FlatList} from 'react-native';
-import {PostsItem} from '../components';
+import {PostsItem,SavedHeader} from '../components';
 import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"
@@ -35,6 +35,7 @@ const Saved = () => {
 
   return (
     <View style={{flex:1}}>
+      <SavedHeader />
       <FlatList
         keyExtractor={(_, index) => index.toString()}
         contentContainerStyle={{flexGrow:1}}
