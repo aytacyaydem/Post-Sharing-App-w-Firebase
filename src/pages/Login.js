@@ -3,8 +3,7 @@ import {View, Text, TextInput, Alert} from 'react-native';
 import {login_page_styles} from '../styles/page_styles';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {CustomButton, Loading} from '../components';
-
+import {CustomButton} from '../components';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');

@@ -36,6 +36,7 @@ const Posts = () => {
   };
 
   function addPost(post) {
+    if(!post) return;
     const newReference = database().ref('posts');
     newReference
       .push({
