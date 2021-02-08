@@ -24,6 +24,9 @@ const login_page_styles = StyleSheet.create({
   icon: {
     textAlign: 'center',
   },
+  loadingContainer:{
+    flex: 1
+  }
 });
 
 export {login_page_styles};

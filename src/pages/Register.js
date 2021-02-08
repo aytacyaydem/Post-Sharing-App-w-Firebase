@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {View, Text, TextInput, Alert} from 'react-native';
 import {login_page_styles} from '../styles/page_styles';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import LottieView from 'lottie-react-native';
+import wait from 'waait';
 import {CustomButton} from '../components/Button';
 
 const Register = ({navigation}) => {
@@ -18,16 +12,20 @@ const Register = ({navigation}) => {
   const [password, setPassword] = useState('');
   const [Confirmpassword, setConfirmPassword] = useState('');
   const [error, setError] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  function FireBaseRegister() {
+  async function FireBaseRegister() {
     if (password === Confirmpassword) {
+      setLoading(true);
+      await wait(1000);
       setError({});
       auth()
         .createUserWithEmailAndPassword(email, password)
         .then(() => {
-          Alert.alert('Hesabınız oluşturuldu.', 'Ana sayfaya yönlendiriliyorsunuz.');
+          setLoading(false);
         })
         .catch(({code}) => {
+          setLoading(false);
           switch (code) {
             case 'auth/invalid-email':
               setError({email: '*Geçersiz bir e-mail girdiniz.'});
@@ -51,6 +49,14 @@ const Register = ({navigation}) => {
     } else {
       setError({password: '*Şifreler Uyuşmuyor.'});
     }
+  }
+
+  if (loading) {
+    return (
+      <View style={login_page_styles.loadingContainer}>
+        <LottieView source={require('../assets/loading.json')} autoPlay loop />
+      </View>
+    );
   }
   return (
     <View style={login_page_styles.container}>

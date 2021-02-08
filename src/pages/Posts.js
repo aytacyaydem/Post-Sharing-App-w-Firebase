@@ -13,7 +13,7 @@ const Posts = () => {
     database()
       .ref('posts')
       .orderByChild('createDate')
-      .once('value', (snapshot) => {
+      .on('value', (snapshot) => {
         snapshot.forEach((snap) => {
           const issue = snap.val();
           array.push(issue);
@@ -56,6 +56,7 @@ const Posts = () => {
         renderItem={renderPosts}
         contentContainerStyle={{flexGrow: 1}}
         ListEmptyComponent={emptyComponent}
+        showsVerticalScrollIndicator={false}
       />
       <PostsInput onAdd={addPost} />
     </SafeAreaView>
