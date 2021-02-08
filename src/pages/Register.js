@@ -16,14 +16,12 @@ const Register = ({navigation}) => {
 
   async function FireBaseRegister() {
     if (password === Confirmpassword) {
+      setError({});
       setLoading(true);
       await wait(1000);
-      setError({});
       auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          setLoading(false);
-        })
+        .then()
         .catch(({code}) => {
           setLoading(false);
           switch (code) {

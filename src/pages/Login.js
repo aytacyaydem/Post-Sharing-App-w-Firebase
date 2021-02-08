@@ -4,17 +4,15 @@ import {login_page_styles} from '../styles/page_styles';
 import auth from '@react-native-firebase/auth';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {CustomButton} from '../components';
-import LottieView from "lottie-react-native";
-import wait from "waait";
+import LottieView from 'lottie-react-native';
+import wait from 'waait';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPssword] = useState('');
   const [loading, setLoading] = useState(false);
-  
+
   async function signIn() {
-    setLoading(true)
-    await wait(3000);
     if (email === '') {
       Alert.alert('Uyarı', 'Email alanı boş bırakılamaz');
     } else if (password === '') {
@@ -22,20 +20,21 @@ const Login = ({navigation}) => {
     } else if (email && password === '') {
       Alert.alert('Uyarı', 'Email ve password alanı boş bırakılamaz');
     } else {
+      setLoading(true)
+      await wait(3000)
       auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => console.log("Signed In"))
-        .catch(({code, message}) => Alert.alert(code, message));
-        setLoading(false)
+        .then(() => console.log('Signed In'))
+        .catch(() => setLoading(false)); 
     }
   }
 
   if (loading) {
     return (
       <View style={login_page_styles.loadingContainer}>
-      <LottieView source={require("../assets/loading.json")} autoPlay loop />
+        <LottieView source={require('../assets/loading.json')} autoPlay loop />
       </View>
-    )
+    );
   }
   return (
     <View style={login_page_styles.container}>
