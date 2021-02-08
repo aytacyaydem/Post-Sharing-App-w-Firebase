@@ -13,6 +13,7 @@ function PostsInput({onAdd}) {
         style={posts_input_style.input}
         onChangeText={(val) => setText(val)}
         multiline
+        value={text}
       />
       <TouchableOpacity
         style={posts_input_style.sendIcon}
